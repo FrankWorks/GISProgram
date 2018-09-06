@@ -1,0 +1,87 @@
+﻿@model IEnumerable<GISProgram.Models.vwProgramHelper>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URLFriendlyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrequencyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Frequency)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URLFriendlyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DisplayAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrequencyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Frequency)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

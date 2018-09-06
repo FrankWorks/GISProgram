@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1179d39aeed5437cb6a7e032064a1c50" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="locationsModel.Location" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="locationsModel.LocationCategory" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="locationsModel.Program" Width="3.25" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="locationsModel.ProgramCategory" Width="2.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="locationsModel.LocationCategory1" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="locationsModel.FK_LocationCategory_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="locationsModel.FK_Program_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="locationsModel.FK_Program_Location_bak" ManuallyRouted="false" />
+        <AssociationConnector Association="locationsModel.FK_Program_ProgramCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="locationsModel.FK_Program_ProgramCategory_bak" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

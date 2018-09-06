@@ -1,0 +1,186 @@
+﻿
+@model GISProgram.Models.programViewModel
+
+<h3>Add New Program</h3>
+<br />
+@Html.HiddenFor(model => model.programID)
+
+<div>
+    @*@Html.LabelFor(model => model.parkName).ToString().ToUpper()*@
+    Park Name:
+</div>
+<br>
+<div>
+    @(Html.Kendo().DropDownListFor(model => model.parkName)
+          .Name("parkNameList")
+          .DataTextField("name")
+          .DataValueField("locationID")
+          .Filter("contains")
+          .DataSource(source =>
+          {
+              source.Custom()
+              .ServerFiltering(true)
+              .ServerPaging(true)
+              .PageSize(80)
+              .Type("aspnetmvc-ajax")
+              .Transport(transport =>
+              {
+                  transport.Read("locationPrograms_Read", "programLocations");
+              })
+              .Schema(schema =>
+              {
+                  schema.Data("Data");
+              });
+              //source.Read(read =>
+              //{
+              //    read.Action("locationPrograms_Read", "programLocations");
+
+              //})
+
+
+              //.ServerFiltering(false);
+
+          })
+    .HtmlAttributes(new { style = "width: 100%" })
+    )
+    @Html.ValidationMessageFor(model => model.parkName)
+</div>
+<br><br>
+<div>
+    @*@Html.LabelFor(model => model.programCategoryName)*@
+    Program Category:
+</div>
+<br>
+<div>
+    @(Html.Kendo().DropDownListFor(model => model.programID)
+         .Name("programCategoryList")
+          .DataTextField("name")
+          .DataValueField("locationID")
+          .Filter("contains")
+          .DataSource(source =>
+          {
+              source.Custom()
+              .ServerFiltering(true)
+              .ServerPaging(true)
+              .PageSize(80)
+              .Type("aspnetmvc-ajax")
+              .Transport(transport =>
+              {
+                  transport.Read("locationProgramCategory_Read", "programLocations");
+              })
+              .Schema(schema =>
+              {
+                  schema.Data("Data");
+              });
+              //source.Read(read =>
+              //{
+              //    read.Action("locationPrograms_Read", "programLocations");
+
+              //})
+
+
+              //.ServerFiltering(false);
+
+          })
+    .HtmlAttributes(new { style = "width: 100%" })
+    )
+    @Html.ValidationMessageFor(model => model.parkName)
+</div>
+<br><br>
+<div>
+    @*Html.LabelFor(model => model.name)*@
+    Program Name:
+</div>
+<br>
+<div>
+    @Html.TextBoxFor(model => model.name, new { maxlength = 200, size = 200 })
+    @Html.ValidationMessageFor(model => model.name)
+</div>
+<br><br>
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Program Description:
+</div>
+<br>
+<div>
+    @Html.TextAreaFor(model => model.description, new { style="width: 500px;"})
+    @Html.ValidationMessageFor(model => model.description)
+</div>
+<br><br>
+
+
+
+@*<div>
+    @(Html.Kendo().AutoCompleteFor(model => model.programName)
+          .Filter("startswith")
+          .Placeholder("Select country...")
+          .BindTo(new string[] {
+                "Albania",
+                "Andorra",
+                "Armenia",
+                "Austria",
+                "Azerbaijan",
+                "Belarus",
+                "Belgium",
+                "Bosnia & Herzegovina",
+                "Bulgaria",
+                "Croatia",
+                "Cyprus",
+                "Czech Republic",
+                "Denmark",
+                "Estonia",
+                "England",
+                "Finland",
+                "France",
+                "Georgia",
+                "Germany",
+                "Greece",
+                "Hungary",
+                "Iceland",
+                "Ireland",
+                "Italy",
+                "Kosovo",
+                "Latvia",
+                "Liechtenstein",
+                "Lithuania",
+                "Luxembourg",
+                "Macedonia",
+                "Malta",
+                "Moldova",
+                "Monaco",
+                "Montenegro",
+                "Netherlands",
+                "Norway",
+                "Poland",
+                "Portugal",
+                "Romania",
+                "Russia",
+                "San Marino",
+                "Serbia",
+                "Slovakia",
+                "Slovenia",
+                "Spain",
+                "Sweden",
+                "Switzerland",
+                "Turkey",
+                "Ukraine",
+                "United Kingdom",
+                "Vatican City"
+          })
+    )
+</div>
+<div>
+    @Html.LabelFor(model => model.programName)
+</div>*@
+<div>
+    @*@Html.Kendo().DateTimePickerFor(model => (DateTime)model.programName).Deferred()
+        @Html.ValidationMessageFor(model => model.BirthDate)*@
+</div>
+@*<div>
+        @Html.LabelFor(model => model.BirthDate)
+    </div>
+    <div>
+        @Html.Kendo().DateTimePickerFor(model => model.BirthDate)
+        @Html.ValidationMessageFor(model => model.BirthDate)
+    </div>*@
+

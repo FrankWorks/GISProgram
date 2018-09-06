@@ -1,0 +1,165 @@
+﻿@model IEnumerable<GISProgram.Models.Location>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image_url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.organization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.point)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isCounty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lms_post_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastUpdated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.operatedByLabel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.source)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sourceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nameUrlFriendly)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image_url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.organization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.point)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isCounty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lms_post_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastUpdated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.operatedByLabel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.source)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sourceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameUrlFriendly)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.locationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.locationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.locationID })
+        </td>
+    </tr>
+}
+
+</table>

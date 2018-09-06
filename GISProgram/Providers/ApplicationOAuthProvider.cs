@@ -22,7 +22,7 @@ namespace GISProgram.Providers
         {
             if (context.ClientId == _publicClientId)
             {
-                Uri expectedRootUri = new Uri(context.Request.Uri, "/");
+                Uri expectedRootUri = new Uri(context.Request.Uri, "/GISProgram/");
 
                 if (expectedRootUri.AbsoluteUri == context.RedirectUri)
                 {
@@ -30,12 +30,40 @@ namespace GISProgram.Providers
                 }
                 else if (context.ClientId == "web")
                 {
-                    var expectedUri = new Uri(context.Request.Uri, "/");
+                    var expectedUri = new Uri(context.Request.Uri, "/GISProgram/");
                     context.Validated(expectedUri.AbsoluteUri);
                 }
             }
 
             return Task.FromResult<object>(null);
         }
+
+        //public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
+        //{
+        //    if (context.ClientId == _publicClientId)
+        //    {
+        //        Uri expectedRootUri;
+        //        if (!string.IsNullOrEmpty(context.Request.Query["returnUrl"]))
+        //        {
+        //            expectedRootUri = new Uri(context.Request.Query["returnUrl"]);
+        //        }
+        //        else
+        //        {
+        //            expectedRootUri = new Uri(context.Request.Uri, "/");
+        //        }
+
+        //        if (expectedRootUri.AbsoluteUri == context.RedirectUri)
+        //        {
+        //            context.Validated();
+        //        }
+        //        else if (context.ClientId == "web")
+        //        {
+        //            var expectedUri = new Uri(context.Request.Query["returnUrl"]);
+        //            context.Validated(expectedUri.AbsoluteUri);
+        //        }
+        //    }
+
+        //    return Task.FromResult<object>(null);
+        //}
     }
 }

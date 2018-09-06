@@ -1,0 +1,110 @@
+﻿
+<div id="grid"></div>
+<script>
+    $("#grid").kendoGrid({
+        height: 400,
+        columns: [
+            //{field: "name"},
+            //{field: "description"},
+            //{field: "address1"},
+            //{field: "address2"},
+            //{field: "city"},
+            //{field: "state"},
+            //{field: "zip"},
+            //{field: "hours"},
+            //{field: "phones"},
+            //{field: "url"},
+            //{field: "image_url"},
+            //{field: "email"},
+            //{field: "organization"},
+            //{field: "latitude"},
+            //{field: "longitude"},
+            //{field: "lms_post_id"},
+            //{field: "lastUpdated"},
+            //{field: "operatedByLabel"},
+            //{field: "source"},
+            //{field: "sourceID"},
+            //{field: "nameUrlFriendly"},
+            //{field: "programCategory"},
+            {field: "programID"},
+            {field: "programName"},
+            {field: "type"},
+            {field: "programDescription"},
+            {field: "minAge"},
+            {field: "maxAge"},
+            {field: "displayAge"},
+            {field: "feeStructure"},
+            {field: "registrationRequired"},
+            {field: "registrationFee"},
+            {field: "frequencyType"},
+            {field: "frequency"},
+            {field: "specialCriteria"},
+            {field: "programCategoryName"},
+            {command: [ "edit" ], width: 180 }
+        ],
+        dataSource: {
+            type: "aspnetmvc-ajax", 
+            transport: {
+                read: {
+                     url: "LocationCategories1_Read"
+                }, 
+				update: { 
+					url: "LocationCategories1_Update"
+				}
+			},
+            schema: {
+                data: "Data",
+                model: {
+                    id: "locationID",
+					fields: {
+						locationID: { type: "number"},
+						name: { type: "string"},
+						description: { type: "string"},
+						address1: { type: "string"},
+						address2: { type: "string"},
+						city: { type: "string"},
+						state: { type: "string"},
+						zip: { type: "string"},
+						hours: { type: "string"},
+						phones: { type: "string"},
+						url: { type: "string"},
+						image_url: { type: "string"},
+						email: { type: "string"},
+						organization: { type: "string"},
+						latitude: { type: "number"},
+						longitude: { type: "number"},
+						isCounty: { type: "boolean"},
+						lms_post_id: { type: "number"},
+						lastUpdated: { type: "date"},
+						operatedByLabel: { type: "string"},
+						source: { type: "string"},
+						sourceID: { type: "number"},
+						nameUrlFriendly: { type: "string"},
+						programCategory: { type: "string"},
+						programID: { type: "number"},
+						programName: { type: "string"},
+						type: { type: "string"},
+						programDescription: { type: "string"},
+						minAge: { type: "string"},
+						maxAge: { type: "string"},
+						displayAge: { type: "string"},
+						feeStructure: { type: "string"},
+						registrationRequired: { type: "boolean"},
+						registrationFee: { type: "string"},
+						frequencyType: { type: "string"},
+						frequency: { type: "string"},
+						specialCriteria: { type: "string"},
+						programCategoryName: { type: "string"}
+					}
+                }
+            }, 
+			serverPaging: true,
+			serverSorting: true,
+			serverSorting: true,
+        },
+        editable: "inline",
+        filterable: true,
+        scrollable: true
+    })
+
+</script>

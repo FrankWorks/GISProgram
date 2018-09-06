@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="locationsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="locationID" />
+          </Key>
+          <Property Name="locationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="address1" Type="nvarchar" MaxLength="75" />
+          <Property Name="address2" Type="nvarchar" MaxLength="75" />
+          <Property Name="city" Type="nvarchar" MaxLength="35" />
+          <Property Name="state" Type="nvarchar" MaxLength="20" />
+          <Property Name="zip" Type="nvarchar" MaxLength="12" />
+          <Property Name="hours" Type="nvarchar" MaxLength="1000" />
+          <Property Name="phones" Type="nvarchar" MaxLength="1000" />
+          <Property Name="url" Type="nvarchar" MaxLength="150" />
+          <Property Name="image_url" Type="nvarchar" MaxLength="255" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="organization" Type="nvarchar" MaxLength="150" />
+          <Property Name="latitude" Type="float" />
+          <Property Name="longitude" Type="float" />
+          <Property Name="point" Type="geography" />
+          <Property Name="isCounty" Type="bit" Nullable="false" />
+          <Property Name="lms_post_id" Type="numeric" Precision="38" Scale="8" />
+          <Property Name="lastUpdated" Type="datetime2" Precision="0" />
+          <Property Name="operatedByLabel" Type="nvarchar" MaxLength="50" />
+          <Property Name="source" Type="nvarchar" MaxLength="50" />
+          <Property Name="sourceID" Type="int" />
+          <Property Name="nameUrlFriendly" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="LocationCategory">
+          <Key>
+            <PropertyRef Name="locationCategoryID" />
+          </Key>
+          <Property Name="locationCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locationID" Type="bigint" Nullable="false" />
+          <Property Name="categoryID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="programID" />
+          </Key>
+          <Property Name="programID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locationID" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="type" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="minAge" Type="nvarchar" MaxLength="100" />
+          <Property Name="maxAge" Type="nvarchar" MaxLength="100" />
+          <Property Name="displayAge" Type="nvarchar" MaxLength="500" />
+          <Property Name="feeStructure" Type="nvarchar" MaxLength="100" />
+          <Property Name="registrationRequired" Type="bit" Nullable="false" />
+          <Property Name="registrationFee" Type="nvarchar" MaxLength="50" />
+          <Property Name="frequencyType" Type="nvarchar" MaxLength="50" />
+          <Property Name="frequency" Type="nvarchar" MaxLength="500" />
+          <Property Name="specialCriteria" Type="nvarchar" MaxLength="500" />
+          <Property Name="programCategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProgramCategory">
+          <Key>
+            <PropertyRef Name="programCategoryID" />
+          </Key>
+          <Property Name="programCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locatorID" Type="tinyint" Nullable="false" />
+          <Property Name="programCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'locations.dbo.LocationCategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LocationCategories">
+          <Key>
+            <PropertyRef Name="locationID" />
+            <PropertyRef Name="isCounty" />
+          </Key>
+          <Property Name="locationID" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="address1" Type="nvarchar" MaxLength="75" />
+          <Property Name="address2" Type="nvarchar" MaxLength="75" />
+          <Property Name="city" Type="nvarchar" MaxLength="35" />
+          <Property Name="state" Type="nvarchar" MaxLength="20" />
+          <Property Name="zip" Type="nvarchar" MaxLength="12" />
+          <Property Name="hours" Type="nvarchar" MaxLength="1000" />
+          <Property Name="phones" Type="nvarchar" MaxLength="1000" />
+          <Property Name="url" Type="nvarchar" MaxLength="150" />
+          <Property Name="image_url" Type="nvarchar" MaxLength="255" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="organization" Type="nvarchar" MaxLength="150" />
+          <Property Name="latitude" Type="float" />
+          <Property Name="longitude" Type="float" />
+          <Property Name="isCounty" Type="bit" Nullable="false" />
+          <Property Name="lms_post_id" Type="numeric" Precision="38" Scale="8" />
+          <Property Name="lastUpdated" Type="datetime2" Precision="0" />
+          <Property Name="operatedByLabel" Type="nvarchar" MaxLength="50" />
+          <Property Name="source" Type="nvarchar" MaxLength="50" />
+          <Property Name="sourceID" Type="int" />
+          <Property Name="nameUrlFriendly" Type="nvarchar" MaxLength="500" />
+          <Property Name="programCategory" Type="varchar" MaxLength="50" />
+          <Property Name="programID" Type="int" />
+          <Property Name="programName" Type="nvarchar" MaxLength="100" />
+          <Property Name="type" Type="nvarchar" MaxLength="100" />
+          <Property Name="programDescription" Type="nvarchar(max)" />
+          <Property Name="minAge" Type="nvarchar" MaxLength="100" />
+          <Property Name="maxAge" Type="nvarchar" MaxLength="100" />
+          <Property Name="displayAge" Type="nvarchar" MaxLength="500" />
+          <Property Name="feeStructure" Type="nvarchar" MaxLength="100" />
+          <Property Name="registrationRequired" Type="bit" />
+          <Property Name="registrationFee" Type="nvarchar" MaxLength="50" />
+          <Property Name="frequencyType" Type="nvarchar" MaxLength="50" />
+          <Property Name="frequency" Type="nvarchar" MaxLength="500" />
+          <Property Name="specialCriteria" Type="nvarchar" MaxLength="500" />
+          <Property Name="programCategoryName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_LocationCategory_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="LocationCategory" Type="Self.LocationCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="locationID" />
+            </Principal>
+            <Dependent Role="LocationCategory">
+              <PropertyRef Name="locationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="locationID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="locationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_Location_bak">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="locationID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="locationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_ProgramCategory">
+          <End Role="ProgramCategory" Type="Self.ProgramCategory" Multiplicity="0..1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramCategory">
+              <PropertyRef Name="programCategoryID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="programCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_ProgramCategory_bak">
+          <End Role="ProgramCategory" Type="Self.ProgramCategory" Multiplicity="0..1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramCategory">
+              <PropertyRef Name="programCategoryID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="programCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="locationsModelStoreContainer">
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationCategory" EntityType="Self.LocationCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramCategory" EntityType="Self.ProgramCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationCategories" EntityType="Self.LocationCategories" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LocationCategories].[locationID] AS [locationID], 
+    [LocationCategories].[name] AS [name], 
+    [LocationCategories].[description] AS [description], 
+    [LocationCategories].[address1] AS [address1], 
+    [LocationCategories].[address2] AS [address2], 
+    [LocationCategories].[city] AS [city], 
+    [LocationCategories].[state] AS [state], 
+    [LocationCategories].[zip] AS [zip], 
+    [LocationCategories].[hours] AS [hours], 
+    [LocationCategories].[phones] AS [phones], 
+    [LocationCategories].[url] AS [url], 
+    [LocationCategories].[image_url] AS [image_url], 
+    [LocationCategories].[email] AS [email], 
+    [LocationCategories].[organization] AS [organization], 
+    [LocationCategories].[latitude] AS [latitude], 
+    [LocationCategories].[longitude] AS [longitude], 
+    [LocationCategories].[isCounty] AS [isCounty], 
+    [LocationCategories].[lms_post_id] AS [lms_post_id], 
+    [LocationCategories].[lastUpdated] AS [lastUpdated], 
+    [LocationCategories].[operatedByLabel] AS [operatedByLabel], 
+    [LocationCategories].[source] AS [source], 
+    [LocationCategories].[sourceID] AS [sourceID], 
+    [LocationCategories].[nameUrlFriendly] AS [nameUrlFriendly], 
+    [LocationCategories].[programCategory] AS [programCategory], 
+    [LocationCategories].[programID] AS [programID], 
+    [LocationCategories].[programName] AS [programName], 
+    [LocationCategories].[type] AS [type], 
+    [LocationCategories].[programDescription] AS [programDescription], 
+    [LocationCategories].[minAge] AS [minAge], 
+    [LocationCategories].[maxAge] AS [maxAge], 
+    [LocationCategories].[displayAge] AS [displayAge], 
+    [LocationCategories].[feeStructure] AS [feeStructure], 
+    [LocationCategories].[registrationRequired] AS [registrationRequired], 
+    [LocationCategories].[registrationFee] AS [registrationFee], 
+    [LocationCategories].[frequencyType] AS [frequencyType], 
+    [LocationCategories].[frequency] AS [frequency], 
+    [LocationCategories].[specialCriteria] AS [specialCriteria], 
+    [LocationCategories].[programCategoryName] AS [programCategoryName]
+    FROM [dbo].[LocationCategories] AS [LocationCategories]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_LocationCategory_Location" Association="Self.FK_LocationCategory_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="LocationCategory" EntitySet="LocationCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_Location" Association="Self.FK_Program_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Program" EntitySet="Program" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_Location_bak" Association="Self.FK_Program_Location_bak">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Program" EntitySet="Program" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_ProgramCategory" Association="Self.FK_Program_ProgramCategory">
+            <End Role="ProgramCategory" EntitySet="ProgramCategory" />
+            <End Role="Program" EntitySet="Program" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_ProgramCategory_bak" Association="Self.FK_Program_ProgramCategory_bak">
+            <End Role="ProgramCategory" EntitySet="ProgramCategory" />
+            <End Role="Program" EntitySet="Program" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="locationsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="locationID" />
+          </Key>
+          <Property Name="locationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address1" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="zip" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="hours" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="phones" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="image_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="organization" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="Double" />
+          <Property Name="longitude" Type="Double" />
+          <Property Name="point" Type="Geography" />
+          <Property Name="isCounty" Type="Boolean" Nullable="false" />
+          <Property Name="lms_post_id" Type="Decimal" Precision="38" Scale="8" />
+          <Property Name="lastUpdated" Type="DateTime" Precision="0" />
+          <Property Name="operatedByLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sourceID" Type="Int32" />
+          <Property Name="nameUrlFriendly" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LocationCategories" Relationship="Self.FK_LocationCategory_Location" FromRole="Location" ToRole="LocationCategory" />
+          <NavigationProperty Name="Programs" Relationship="Self.FK_Program_Location" FromRole="Location" ToRole="Program" />
+          <NavigationProperty Name="Programs1" Relationship="Self.FK_Program_Location_bak" FromRole="Location" ToRole="Program" />
+        </EntityType>
+        <EntityType Name="LocationCategory">
+          <Key>
+            <PropertyRef Name="locationCategoryID" />
+          </Key>
+          <Property Name="locationCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locationID" Type="Int64" Nullable="false" />
+          <Property Name="categoryID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_LocationCategory_Location" FromRole="LocationCategory" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="programID" />
+          </Key>
+          <Property Name="programID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locationID" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="minAge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="maxAge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="displayAge" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="feeStructure" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="registrationRequired" Type="Boolean" Nullable="false" />
+          <Property Name="registrationFee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="frequencyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="frequency" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="specialCriteria" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="programCategoryID" Type="Int32" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Program_Location" FromRole="Program" ToRole="Location" />
+          <NavigationProperty Name="Location1" Relationship="Self.FK_Program_Location_bak" FromRole="Program" ToRole="Location" />
+          <NavigationProperty Name="ProgramCategory" Relationship="Self.FK_Program_ProgramCategory" FromRole="Program" ToRole="ProgramCategory" />
+          <NavigationProperty Name="ProgramCategory1" Relationship="Self.FK_Program_ProgramCategory_bak" FromRole="Program" ToRole="ProgramCategory" />
+        </EntityType>
+        <EntityType Name="ProgramCategory">
+          <Key>
+            <PropertyRef Name="programCategoryID" />
+          </Key>
+          <Property Name="programCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locatorID" Type="Byte" Nullable="false" />
+          <Property Name="programCategory1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Programs" Relationship="Self.FK_Program_ProgramCategory" FromRole="ProgramCategory" ToRole="Program" />
+          <NavigationProperty Name="Programs1" Relationship="Self.FK_Program_ProgramCategory_bak" FromRole="ProgramCategory" ToRole="Program" />
+        </EntityType>
+        <EntityType Name="LocationCategory1">
+          <Key>
+            <PropertyRef Name="locationID" />
+            <PropertyRef Name="isCounty" />
+          </Key>
+          <Property Name="locationID" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address1" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="zip" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="hours" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="phones" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="image_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="organization" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="Double" />
+          <Property Name="longitude" Type="Double" />
+          <Property Name="isCounty" Type="Boolean" Nullable="false" />
+          <Property Name="lms_post_id" Type="Decimal" Precision="38" Scale="8" />
+          <Property Name="lastUpdated" Type="DateTime" Precision="0" />
+          <Property Name="operatedByLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sourceID" Type="Int32" />
+          <Property Name="nameUrlFriendly" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="programCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="programID" Type="Int32" />
+          <Property Name="programName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="programDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="minAge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="maxAge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="displayAge" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="feeStructure" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="registrationRequired" Type="Boolean" />
+          <Property Name="registrationFee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="frequencyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="frequency" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="specialCriteria" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="programCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_LocationCategory_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="LocationCategory" Type="Self.LocationCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="locationID" />
+            </Principal>
+            <Dependent Role="LocationCategory">
+              <PropertyRef Name="locationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="locationID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="locationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_Location_bak">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="locationID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="locationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_ProgramCategory">
+          <End Role="ProgramCategory" Type="Self.ProgramCategory" Multiplicity="0..1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramCategory">
+              <PropertyRef Name="programCategoryID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="programCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Program_ProgramCategory_bak">
+          <End Role="ProgramCategory" Type="Self.ProgramCategory" Multiplicity="0..1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramCategory">
+              <PropertyRef Name="programCategoryID" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="programCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ISDGIS" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="LocationCategories" EntityType="Self.LocationCategory" />
+          <EntitySet Name="Programs" EntityType="Self.Program" />
+          <EntitySet Name="ProgramCategories" EntityType="Self.ProgramCategory" />
+          <EntitySet Name="LocationCategories1" EntityType="Self.LocationCategory1" />
+          <AssociationSet Name="FK_LocationCategory_Location" Association="Self.FK_LocationCategory_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="LocationCategory" EntitySet="LocationCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_Location" Association="Self.FK_Program_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_Location_bak" Association="Self.FK_Program_Location_bak">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_ProgramCategory" Association="Self.FK_Program_ProgramCategory">
+            <End Role="ProgramCategory" EntitySet="ProgramCategories" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Program_ProgramCategory_bak" Association="Self.FK_Program_ProgramCategory_bak">
+            <End Role="ProgramCategory" EntitySet="ProgramCategories" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="locationsModelStoreContainer" CdmEntityContainer="ISDGIS">
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="locationsModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="locationID" ColumnName="locationID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="hours" ColumnName="hours" />
+                <ScalarProperty Name="phones" ColumnName="phones" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="organization" ColumnName="organization" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="point" ColumnName="point" />
+                <ScalarProperty Name="isCounty" ColumnName="isCounty" />
+                <ScalarProperty Name="lms_post_id" ColumnName="lms_post_id" />
+                <ScalarProperty Name="lastUpdated" ColumnName="lastUpdated" />
+                <ScalarProperty Name="operatedByLabel" ColumnName="operatedByLabel" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="sourceID" ColumnName="sourceID" />
+                <ScalarProperty Name="nameUrlFriendly" ColumnName="nameUrlFriendly" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationCategories">
+            <EntityTypeMapping TypeName="locationsModel.LocationCategory">
+              <MappingFragment StoreEntitySet="LocationCategory">
+                <ScalarProperty Name="locationCategoryID" ColumnName="locationCategoryID" />
+                <ScalarProperty Name="locationID" ColumnName="locationID" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="locationsModel.Program">
+              <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="programID" ColumnName="programID" />
+                <ScalarProperty Name="locationID" ColumnName="locationID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="minAge" ColumnName="minAge" />
+                <ScalarProperty Name="maxAge" ColumnName="maxAge" />
+                <ScalarProperty Name="displayAge" ColumnName="displayAge" />
+                <ScalarProperty Name="feeStructure" ColumnName="feeStructure" />
+                <ScalarProperty Name="registrationRequired" ColumnName="registrationRequired" />
+                <ScalarProperty Name="registrationFee" ColumnName="registrationFee" />
+                <ScalarProperty Name="frequencyType" ColumnName="frequencyType" />
+                <ScalarProperty Name="frequency" ColumnName="frequency" />
+                <ScalarProperty Name="specialCriteria" ColumnName="specialCriteria" />
+                <ScalarProperty Name="programCategoryID" ColumnName="programCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramCategories">
+            <EntityTypeMapping TypeName="locationsModel.ProgramCategory">
+              <MappingFragment StoreEntitySet="ProgramCategory">
+                <ScalarProperty Name="programCategoryID" ColumnName="programCategoryID" />
+                <ScalarProperty Name="locatorID" ColumnName="locatorID" />
+                <ScalarProperty Name="programCategory1" ColumnName="programCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationCategories1">
+            <EntityTypeMapping TypeName="locationsModel.LocationCategory1">
+              <MappingFragment StoreEntitySet="LocationCategories">
+                <ScalarProperty Name="locationID" ColumnName="locationID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="hours" ColumnName="hours" />
+                <ScalarProperty Name="phones" ColumnName="phones" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="organization" ColumnName="organization" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="isCounty" ColumnName="isCounty" />
+                <ScalarProperty Name="lms_post_id" ColumnName="lms_post_id" />
+                <ScalarProperty Name="lastUpdated" ColumnName="lastUpdated" />
+                <ScalarProperty Name="operatedByLabel" ColumnName="operatedByLabel" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="sourceID" ColumnName="sourceID" />
+                <ScalarProperty Name="nameUrlFriendly" ColumnName="nameUrlFriendly" />
+                <ScalarProperty Name="programCategory" ColumnName="programCategory" />
+                <ScalarProperty Name="programID" ColumnName="programID" />
+                <ScalarProperty Name="programName" ColumnName="programName" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="programDescription" ColumnName="programDescription" />
+                <ScalarProperty Name="minAge" ColumnName="minAge" />
+                <ScalarProperty Name="maxAge" ColumnName="maxAge" />
+                <ScalarProperty Name="displayAge" ColumnName="displayAge" />
+                <ScalarProperty Name="feeStructure" ColumnName="feeStructure" />
+                <ScalarProperty Name="registrationRequired" ColumnName="registrationRequired" />
+                <ScalarProperty Name="registrationFee" ColumnName="registrationFee" />
+                <ScalarProperty Name="frequencyType" ColumnName="frequencyType" />
+                <ScalarProperty Name="frequency" ColumnName="frequency" />
+                <ScalarProperty Name="specialCriteria" ColumnName="specialCriteria" />
+                <ScalarProperty Name="programCategoryName" ColumnName="programCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

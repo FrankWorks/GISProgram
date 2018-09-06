@@ -1,0 +1,312 @@
+﻿@model GISProgram.Models.LocationCategory1
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LocationCategory1</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.organization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.organization)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lms_post_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lms_post_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastUpdated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.operatedByLabel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.operatedByLabel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.source)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sourceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sourceID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameUrlFriendly)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameUrlFriendly)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.minAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maxAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maxAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.displayAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displayAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.feeStructure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.feeStructure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registrationRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registrationRequired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registrationFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registrationFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.frequencyType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.frequencyType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.frequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.frequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specialCriteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specialCriteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programCategoryName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

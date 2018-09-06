@@ -1,0 +1,136 @@
+﻿
+<div id="grid"></div>
+<script>
+    $("#grid").kendoGrid({
+        height: 800,
+        
+        columns: [
+            {field: "name", title: "Name", width: 240},
+            {field: "programID", title:"ID",width :50},
+            {field: "programName", title:"Type", width :75},
+            //{ field: "type", width: 75 },
+            {field: "programDescription", width: 450},
+            {field: "displayAge", title: "Age", width:75},
+            { field: "feeStructure", width: 75 },
+            { field: "registrationRequired", width: 75 },
+            { field: "registrationFee", width: 75 },
+            { field: "frequencyType", width: 75 },
+            { field: "frequency", width: 75 },
+            { field: "specialCriteria", width: 75 },
+            { field: "programCategoryName", width: 75 },
+            {command: [ "edit" ], width: 180 }
+        ],
+        toolbar: ["excel", "pdf"],
+        dataSource: {
+            type: "aspnetmvc-ajax", 
+            transport: {
+                read: {
+                     url: "LocationCategories1_Read"
+                }, 
+				update: { 
+					url: "LocationCategories1_Update"
+				}
+			},
+            schema: {
+                data: "Data",
+                model: {
+                    id: "locationID",
+					fields: {
+						locationID: { type: "number"},
+						description: { type: "string"},
+						address1: { type: "string"},
+						address2: { type: "string"},
+						city: { type: "string"},
+						state: { type: "string"},
+						zip: { type: "string"},
+						hours: { type: "string"},
+						phones: { type: "string"},
+						url: { type: "string"},
+						image_url: { type: "string"},
+						email: { type: "string"},
+						organization: { type: "string"},
+						latitude: { type: "number"},
+						longitude: { type: "number"},
+						isCounty: { type: "boolean"},
+						lms_post_id: { type: "number"},
+						lastUpdated: { type: "date"},
+						operatedByLabel: { type: "string"},
+						source: { type: "string"},
+						sourceID: { type: "number"},
+						nameUrlFriendly: { type: "string"},
+						programCategory: { type: "string"},
+						minAge: { type: "string"},
+						maxAge: { type: "string"},
+						"name": {
+							type: "string"
+						},
+						"programID": {
+							type: "number"
+						},
+						"programName": {
+							type: "string"
+						},
+						"type": {
+							type: "string"
+						},
+						"programDescription": {
+							type: "string"
+						},
+						"displayAge": {
+							type: "string"
+						},
+						"feeStructure": {
+							type: "string"
+						},
+						"registrationRequired": {
+							type: "number"
+						},
+						"registrationFee": {
+							type: "string"
+						},
+						"frequencyType": {
+							type: "string"
+						},
+						"frequency": {
+							type: "string"
+						},
+						"specialCriteria": {
+							type: "string"
+						},
+						"programCategoryName": {
+							type: "string"
+						}
+					}
+                }
+            }, 
+			serverPaging: true,
+			serverSorting: true,
+			serverSorting: true,
+        },
+        columnMenu: true,
+        editable: "inline",
+        pageable: true,
+        navigatable: true,
+        sortable: {
+            mode: "single"
+        },
+        filterable: true,
+        saveChanges: onSaveChanges,
+        edit: onEdit,
+        scrollable: true
+    })
+
+    function onSaveChanges(e){
+        //Implement the event handler for saveChanges
+    }
+
+    function onEdit(e){
+        //Implement the event handler for edit
+    }
+
+    //function ondataBound (e) {
+    //    for (var i = 0; i < this.columns.length; i++) {
+    //        this.autoFitColumn(i);
+    //    }
+    //}
+</script>

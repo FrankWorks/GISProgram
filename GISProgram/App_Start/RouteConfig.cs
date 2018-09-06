@@ -16,7 +16,7 @@ namespace GISProgram
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Grid1", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
