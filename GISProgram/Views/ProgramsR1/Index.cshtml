@@ -1,0 +1,123 @@
+﻿@model IEnumerable<GISProgram.Models.Program>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.minAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maxAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.displayAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.feeStructure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.registrationRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.registrationFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.frequencyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.frequency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.specialCriteria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location1.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramCategory.programCategory1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramCategory1.programCategory1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maxAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.displayAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.feeStructure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registrationRequired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registrationFee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.frequencyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.frequency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.specialCriteria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location1.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramCategory.programCategory1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramCategory1.programCategory1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.programID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.programID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.programID })
+        </td>
+    </tr>
+}
+
+</table>

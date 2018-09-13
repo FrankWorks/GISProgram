@@ -1,0 +1,152 @@
+﻿@model GISProgram.Models.Program
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Program</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.minAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maxAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maxAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.displayAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displayAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.feeStructure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.feeStructure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registrationRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registrationRequired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registrationFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registrationFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.frequencyType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.frequencyType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.frequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.frequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specialCriteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specialCriteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location1.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location1.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProgramCategory.programCategory1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgramCategory.programCategory1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProgramCategory1.programCategory1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgramCategory1.programCategory1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

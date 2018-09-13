@@ -12,6 +12,7 @@ using GISProgram.Models;
 
 namespace GISProgram.Controllers
 {
+    [Authorize]
     public class Grid1Controller : Controller
     {
         private ISDGIS db = new ISDGIS();
@@ -26,7 +27,7 @@ namespace GISProgram.Controllers
             IQueryable<Program> programs = db.Programs;
             DataSourceResult result = programs.ToDataSourceResult(request, program => new programViewModel{
                 programID = program.programID,
-                //locationID = program.locationID,
+                locationID = program.locationID,
                 parkName = db.Locations.Where(s => s.locationID == program.locationID).Select(s => s.name).First(),
                 name = program.name,
                 type = program.type,
@@ -47,12 +48,14 @@ namespace GISProgram.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Programs_Create([DataSourceRequest]DataSourceRequest request, Program program)
+        public ActionResult Programs_Create([DataSourceRequest]DataSourceRequest request, programViewModel program)
         {
             if (ModelState.IsValid)
             {
                 var entity = new Program
                 {
+                    locationID = long.Parse(program.parkName),
+                    programCategoryID = int.Parse(program.programCategoryName),
                     name = program.name,
                     type = program.type,
                     description = program.description,
@@ -60,7 +63,7 @@ namespace GISProgram.Controllers
                     //maxAge = program.maxAge,
                     displayAge = program.displayAge,
                     feeStructure = program.feeStructure,
-                    registrationRequired = program.registrationRequired,
+                    registrationRequired = false,
                     registrationFee = program.registrationFee,
                     frequencyType = program.frequencyType,
                     frequency = program.frequency,

@@ -1,9 +1,11 @@
 ﻿
 @(Html.Kendo().Grid<GISProgram.Models.programViewModel>()
       .Name("grid")
+
       .Columns(columns =>
       {
           columns.Bound(c => c.programID).Hidden();
+          columns.Bound(c => c.locationID).Title("ParkID");
           columns.Bound(c => c.parkName).Title("Park").Width(150);
           columns.Bound(c => c.name).Title("Program").Width(150);
           // columns.Bound(c => c.type);
@@ -20,7 +22,8 @@
           columns.Bound(c => c.programCategoryName).Hidden();
           columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
       })
-      .ToolBar(toolbar => {
+      .ToolBar(toolbar =>
+      {
           toolbar.Create();
           toolbar.Excel();
           toolbar.Pdf();
@@ -28,13 +31,16 @@
       .ColumnMenu()
       .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("program"))
       .Pageable()
+
       .Navigatable()
-      .Sortable(sortable => {
+      .Sortable(sortable =>
+      {
           sortable.SortMode(GridSortMode.MultipleColumn);
       })
       .Filterable()
       .Scrollable(s => s.Height("auto"))
-      .Events(events => {
+      .Events(events =>
+      {
           events.Change("onChange");
           events.DataBinding("onDataBinding");
           events.SaveChanges("onSaveChanges");
@@ -65,6 +71,8 @@
           .Update(update => update.Action("Programs_Update", "Grid1"))
           .Destroy(destroy => destroy.Action("Programs_Destroy", "Grid1"))
       )
+      .Resizable(resize =>resize.Columns(true))
+      .Groupable()
 )
 
 <script>
@@ -152,5 +160,21 @@
     function onPdfExport(e){
         //Implement the event handler for PdfExport
     }
+    function onSelect(e) {
+        //Implement the event handler for PdfExport
 
+    }
+    function onOpen(e) {
+        //Implement the event handler for PdfExport
+    }
+    function onClose(e) {
+        //Implement the event handler for PdfExport
+    }
+    function onFiltering(e) {
+        //Implement the event handler for PdfExport
+    }
+    function onCateogrySelect(e) {
+        //Implement the event handler for PdfExport
+    }
+    
 </script>

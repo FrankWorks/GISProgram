@@ -140,6 +140,20 @@ namespace GISProgram.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult locationParks_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            IQueryable<Location> programs = db.Locations.Where(d => d.operatedByLabel == "County Operated Facility").OrderBy(d => d.name);
+            DataSourceResult result = programs.ToDataSourceResult(request, program => new parkViewModel
+            {
+                //locationID = program.locationID,
+                name = program.name
+                //locationID = program.locationID,
+                //parkName = db.Locations.Where(s => s.locationID == program.locationID).Select(s => s.name).First(),
+
+            });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult locationProgramCategory_Read([DataSourceRequest]DataSourceRequest request)
         {

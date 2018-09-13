@@ -233,6 +233,7 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ProgramHelperController.cs" />
     <Compile Include="Controllers\programLocationsController.cs" />
+    <Compile Include="Controllers\ProgramsR1Controller.cs" />
     <Compile Include="Controllers\tblParksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -342,6 +343,7 @@
       <DependentUpon>ModelTest.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ParkProgram.cs" />
+    <Compile Include="Models\parkViewModel.cs" />
     <Compile Include="Models\Program.cs">
       <DependentUpon>ISDGISProgram.tt</DependentUpon>
     </Compile>
@@ -375,6 +377,7 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\console.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -451,12 +454,14 @@
     <Content Include="Models\ISDGISProgram.edmx.diagram">
       <DependentUpon>ISDGISProgram.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Code\Helpers.cshtml" />
     <None Include="Properties\PublishProfiles\PKWeb1.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\console.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
@@ -549,6 +554,12 @@
     <Content Include="Views\programLocations\Edit.cshtml" />
     <Content Include="Views\programLocations\Index.cshtml" />
     <Content Include="Views\Grid1\EditorTemplates\testpopup.cshtml" />
+    <Content Include="Views\ProgramsR1\Create.cshtml" />
+    <Content Include="Views\ProgramsR1\Delete.cshtml" />
+    <Content Include="Views\ProgramsR1\Details.cshtml" />
+    <Content Include="Views\ProgramsR1\Edit.cshtml" />
+    <Content Include="Views\ProgramsR1\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

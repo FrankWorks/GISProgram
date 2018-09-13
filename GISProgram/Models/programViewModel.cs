@@ -11,6 +11,7 @@ namespace GISProgram.Models
     {
         public string name { get; set; }
         public string parkName { get; set; }
+        public long locationID { get; set; }
         [Key]
         public Nullable<int> programID { get; set; }
         public string programName { get; set; }
