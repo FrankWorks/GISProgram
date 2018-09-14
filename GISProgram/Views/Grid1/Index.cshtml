@@ -28,7 +28,7 @@
           //toolbar.Excel();
           //toolbar.Pdf();
           toolbar.Template(@<text>
-        @item.CreateButton()
+        @item.CreateButton("Add")
 
         <div class="refreshBtnContainer">
             <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
@@ -36,14 +36,16 @@
         <div class="toolbar">
             <label class="category-label" for="category">Show programs by park:</label>
             @(Html.Kendo().DropDownList()
-                .Name("c")
+          .Name("locationID")
           .DataTextField("name")
           .DataValueField("locationID")
           .Filter("contains")
+          .OptionLabel("All")
           .ValuePrimitive(true)
+          .AutoBind(false)
           .Events(e =>
           {
-              e.Change("onChange").Select("onSelect").Open("onOpen").Close("onClose").DataBound("onDataBound").Filtering("onFiltering");
+              e.Change("onParkChange").Select("onSave").Open("onOpen").Close("onClose").DataBound("onDataBound").Filtering("onFiltering");
           })
           .DataSource(source =>
           {
@@ -70,6 +72,7 @@
       .ColumnMenu()
       .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("program"))
       .Pageable()
+      //.Pageable(c => c.Numeric(false).PreviousNext(false))
 
       .Navigatable()
       .Sortable(sortable =>
@@ -78,6 +81,7 @@
       })
       .Filterable()
       .Scrollable(s => s.Height("auto"))
+      //.Scrollable(sc => sc.Endless(true))
       .Events(events =>
       {
           events.Change("onChange");
@@ -203,6 +207,24 @@
         //Implement the event handler for PdfExport
 
     }
+    function onParkChange(e) {
+        //Implement the event handler for PdfExport
+        //alert("Hello");
+        var dataItem = this.dataItem(e.item);
+        var value = this.value();
+        console.log("event :: select (" + dataItem.name + " : " + dataItem.name + ")");
+        var locationID = dataItem.locationID;
+        console.log("event :: select (" + locationID + " : " + locationID + ")");
+        
+        var value = this.value(),
+        grid = $("#grid").data("kendoGrid");
+
+        if (value) {
+            grid.dataSource.filter({ field: "locationID", operator: "eq", value: parseInt(value) });
+        } else {
+            grid.dataSource.filter({});
+        }
+    }
     function onOpen(e) {
         //Implement the event handler for PdfExport
     }
@@ -215,5 +237,34 @@
     function onCateogrySelect(e) {
         //Implement the event handler for PdfExport
     }
+    $(function () {
+        var grid = $("#grid");
+        grid.find(".k-grid-toolbar").on("click", ".k-pager-refresh", function (e) {
+            e.preventDefault();
+            grid.data("kendoGrid").dataSource.read();
+        });
 
+    });
 </script>
+<style>
+    #grid .k-grid-toolbar {
+        padding: .6em 1.3em .6em .4em;
+    }
+
+    .category-label {
+        vertical-align: middle;
+        padding-right: .5em;
+    }
+
+    #category {
+        vertical-align: middle;
+    }
+
+    .refreshBtnContainer {
+        display: inline-block;
+    }
+
+    .toolbar {
+        float: right;
+    }
+</style>
