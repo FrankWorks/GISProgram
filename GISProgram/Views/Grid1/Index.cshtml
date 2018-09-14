@@ -24,9 +24,48 @@
       })
       .ToolBar(toolbar =>
       {
-          toolbar.Create();
-          toolbar.Excel();
-          toolbar.Pdf();
+          //toolbar.Create();
+          //toolbar.Excel();
+          //toolbar.Pdf();
+          toolbar.Template(@<text>
+        @item.CreateButton()
+
+        <div class="refreshBtnContainer">
+            <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
+        </div>
+        <div class="toolbar">
+            <label class="category-label" for="category">Show programs by park:</label>
+            @(Html.Kendo().DropDownList()
+                .Name("c")
+          .DataTextField("name")
+          .DataValueField("locationID")
+          .Filter("contains")
+          .ValuePrimitive(true)
+          .Events(e =>
+          {
+              e.Change("onChange").Select("onSelect").Open("onOpen").Close("onClose").DataBound("onDataBound").Filtering("onFiltering");
+          })
+          .DataSource(source =>
+          {
+              source.Custom()
+              .ServerFiltering(true)
+              .ServerPaging(true)
+              .PageSize(80)
+              .Type("aspnetmvc-ajax")
+              .Transport(transport =>
+              {
+                  transport.Read("locationPrograms_Read", "programLocations");
+              })
+              .Schema(schema =>
+              {
+                  schema.Data("Data");
+              });
+
+          })
+    .HtmlAttributes(new { style = "width: 100%" })
+            )
+        </div>
+        </text>);
       })
       .ColumnMenu()
       .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("program"))
@@ -71,93 +110,93 @@
           .Update(update => update.Action("Programs_Update", "Grid1"))
           .Destroy(destroy => destroy.Action("Programs_Destroy", "Grid1"))
       )
-      .Resizable(resize =>resize.Columns(true))
+      .Resizable(resize => resize.Columns(true))
       .Groupable()
 )
 
 <script>
 
-    function onChange(e){
+    function onChange(e) {
         //Implement the event handler for Change
     }
 
-    function onDataBinding(e){
+    function onDataBinding(e) {
         //Implement the event handler for DataBinding
     }
 
-    function onSaveChanges(e){
+    function onSaveChanges(e) {
         //Implement the event handler for SaveChanges
     }
 
-    function onEdit(e){
+    function onEdit(e) {
         //Implement the event handler for Edit
     }
 
-    function onDetailCollapse(e){
+    function onDetailCollapse(e) {
         //Implement the event handler for DetailCollapse
     }
 
-    function onCancel(e){
+    function onCancel(e) {
         //Implement the event handler for Cancel
     }
 
-    function onColumnLock(e){
+    function onColumnLock(e) {
         //Implement the event handler for ColumnLock
     }
 
-    function onColumnResize(e){
+    function onColumnResize(e) {
         //Implement the event handler for ColumnResize
     }
 
-    function onDetailExpand(e){
+    function onDetailExpand(e) {
         //Implement the event handler for DetailExpand
     }
 
-    function onExcelExport(e){
+    function onExcelExport(e) {
         //Implement the event handler for ExcelExport
     }
 
-    function onRemove(e){
+    function onRemove(e) {
         //Implement the event handler for Remove
     }
 
-    function onColumnMenuInit(e){
+    function onColumnMenuInit(e) {
         //Implement the event handler for ColumnMenuInit
     }
 
-    function onColumnShow(e){
+    function onColumnShow(e) {
         //Implement the event handler for ColumnShow
     }
 
-    function onDataBound(e){
+    function onDataBound(e) {
         //Implement the event handler for DataBound
     }
 
-    function onDetailInit(e){
+    function onDetailInit(e) {
         //Implement the event handler for DetailInit
     }
 
-    function onFilterMenuInit(e){
+    function onFilterMenuInit(e) {
         //Implement the event handler for FilterMenuInit
     }
 
-    function onSave(e){
+    function onSave(e) {
         //Implement the event handler for Save
     }
 
-    function onColumnHide(e){
+    function onColumnHide(e) {
         //Implement the event handler for ColumnHide
     }
 
-    function onColumnReorder(e){
+    function onColumnReorder(e) {
         //Implement the event handler for ColumnReorder
     }
 
-    function onColumnUnlock(e){
+    function onColumnUnlock(e) {
         //Implement the event handler for ColumnUnlock
     }
 
-    function onPdfExport(e){
+    function onPdfExport(e) {
         //Implement the event handler for PdfExport
     }
     function onSelect(e) {
@@ -176,5 +215,5 @@
     function onCateogrySelect(e) {
         //Implement the event handler for PdfExport
     }
-    
+
 </script>
