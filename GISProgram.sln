@@ -5,10 +5,23 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GISProgram", "GISProgram\GISProgram.csproj", "{21942D3C-7947-4157-A509-3A428B4C8A8F}"
 	ProjectSection(ProjectDependencies) = postProject
+		{B568A019-34F9-44C1-9ECA-1398E91D47D2} = {B568A019-34F9-44C1-9ECA-1398E91D47D2}
 		{EAFDA280-FACB-4619-B3E8-90796B8A7759} = {EAFDA280-FACB-4619-B3E8-90796B8A7759}
+		{19F0BDB6-32C9-42F5-BB74-75CAA6537A49} = {19F0BDB6-32C9-42F5-BB74-75CAA6537A49}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastucture", "Infrastucture\Infrastucture.csproj", "{EAFDA280-FACB-4619-B3E8-90796B8A7759}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{19F0BDB6-32C9-42F5-BB74-75CAA6537A49}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B568A019-34F9-44C1-9ECA-1398E91D47D2} = {B568A019-34F9-44C1-9ECA-1398E91D47D2}
+		{EAFDA280-FACB-4619-B3E8-90796B8A7759} = {EAFDA280-FACB-4619-B3E8-90796B8A7759}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAcessLayer", "DataAcessLayer\DataAcessLayer.csproj", "{B568A019-34F9-44C1-9ECA-1398E91D47D2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EAFDA280-FACB-4619-B3E8-90796B8A7759} = {EAFDA280-FACB-4619-B3E8-90796B8A7759}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +37,14 @@ Global
 		{EAFDA280-FACB-4619-B3E8-90796B8A7759}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAFDA280-FACB-4619-B3E8-90796B8A7759}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAFDA280-FACB-4619-B3E8-90796B8A7759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F0BDB6-32C9-42F5-BB74-75CAA6537A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F0BDB6-32C9-42F5-BB74-75CAA6537A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F0BDB6-32C9-42F5-BB74-75CAA6537A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F0BDB6-32C9-42F5-BB74-75CAA6537A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B568A019-34F9-44C1-9ECA-1398E91D47D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B568A019-34F9-44C1-9ECA-1398E91D47D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B568A019-34F9-44C1-9ECA-1398E91D47D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B568A019-34F9-44C1-9ECA-1398E91D47D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

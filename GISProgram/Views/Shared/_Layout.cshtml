@@ -50,7 +50,8 @@
         @RenderSection("SPAViews", required: false)
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Parks Programs Publisher</p>
+            <p style="text-align:center">&copy; @DateTime.Now.Year - Parks Programs Publisher &nbsp; &nbsp; Version: @ViewContext.Controller.GetType().Assembly.GetName().Version.ToString()</p>
+          
         </footer>
     </div>
 
