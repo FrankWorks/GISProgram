@@ -182,7 +182,30 @@
     @*@{
         bool sValue = (Model.registrationRequired.Value ? true : false);
     }*@
-    @Html.EditorFor(model =>model.specialCriteria)
+    @*@Html.EditorFor(model =>model.specialCriteria)*@
+    @(Html.Kendo().DropDownListFor(model => model.specialCriteria)
+          .Name("specialCriteria")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .Events(e => e.Change("onChange"))
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {
+                  Text = "Select",
+                  Value = ""
+              },
+              new SelectListItem() {
+                  Text = "Yes",
+                  Value = "Yes"
+              },
+              new SelectListItem() {
+                  Text = "No",
+                  Value = "No"
+              }
+          })
+          .Value("")
+          .HtmlAttributes(new { style = "width: 100%" })
+    )
+
     @Html.ValidationMessageFor(model => model.specialCriteria)
 </div>
 
@@ -204,5 +227,30 @@
         console.log("event :: select (" + locationID + " : " + locationID + ")");
         $('tempProgramID').val(dataItem.locationID);
     }
-
+    function onChange() {
+        var value = $("#specialCriteria").val();
+        $("#cap")
+                .toggleClass("black-cap", value == 1)
+                .toggleClass("orange-cap", value == 2)
+                .toggleClass("grey-cap", value == 3);
+    };
 </script>
+<style>
+    #cap {
+        width: 242px;
+        height: 225px;
+        margin: 20px auto;
+        background-image: url('@Url.Content("~/Content/web/dropdownlist/cap.png")');
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+    .black-cap {
+        background-position: 0 0;
+    }
+    .grey-cap {
+        background-position: 0 -225px;
+    }
+    .orange-cap {
+        background-position: 0 -450px;
+    }
+</style>
