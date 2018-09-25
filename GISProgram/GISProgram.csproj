@@ -244,6 +244,7 @@
     <Compile Include="Controllers\ProgramHelperController.cs" />
     <Compile Include="Controllers\programLocationsController.cs" />
     <Compile Include="Controllers\ProgramsR1Controller.cs" />
+    <Compile Include="Controllers\SandBoxController.cs" />
     <Compile Include="Controllers\tblParksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -2209,6 +2210,7 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-CN.min.js.map" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-HK.min.js.map" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js.map" />
+    <Content Include="Views\SandBox\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2223,6 +2225,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastucture\Infrastucture.csproj">
+      <Project>{eafda280-facb-4619-b3e8-90796b8a7759}</Project>
+      <Name>Infrastucture</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

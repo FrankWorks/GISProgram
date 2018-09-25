@@ -31,8 +31,8 @@
         @item.CreateButton("Add")
 
         @*<div class="refreshBtnContainer">
-            <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
-        </div>*@
+                <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
+            </div>*@
         <div class="toolbar">
             <label class="category-label" for="category">Show programs by park:</label>
             @(Html.Kendo().DropDownList()
@@ -215,7 +215,7 @@
         console.log("event :: select (" + dataItem.name + " : " + dataItem.name + ")");
         var locationID = dataItem.locationID;
         console.log("event :: select (" + locationID + " : " + locationID + ")");
-        
+
         var value = this.value(),
         grid = $("#grid").data("kendoGrid");
 

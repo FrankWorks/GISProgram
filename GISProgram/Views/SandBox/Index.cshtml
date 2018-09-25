@@ -1,0 +1,163 @@
+﻿
+@(Html.Kendo().Grid<GISProgram.Models.Program>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.name);
+          columns.Bound(c => c.type);
+          columns.Bound(c => c.description);
+          columns.Bound(c => c.minAge);
+          columns.Bound(c => c.maxAge);
+          columns.Bound(c => c.displayAge);
+          columns.Bound(c => c.feeStructure);
+          columns.Bound(c => c.registrationRequired);
+          columns.Bound(c => c.registrationFee);
+          columns.Bound(c => c.frequencyType);
+          columns.Bound(c => c.frequency);
+          columns.Bound(c => c.specialCriteria);
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar =>
+      {
+          toolbar.Create();
+          //toolbar.Excel();
+          //toolbar.Pdf();
+      })
+      .ColumnMenu()
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Navigatable()
+      .Selectable(selectable =>
+      {
+          selectable.Mode(GridSelectionMode.Single);
+          selectable.Type(GridSelectionType.Row);
+      })
+      .Sortable(sortable =>
+      {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Filterable()
+      .Scrollable(s => s.Height("auto"))
+      .Events(events =>
+      {
+          events.Cancel("onCancel");
+          events.ColumnLock("onColumnLock");
+          events.ColumnResize("onColumnResize");
+          events.DataBinding("onDataBinding");
+          events.DetailExpand("onDetailExpand");
+          events.ExcelExport("onExcelExport");
+          events.Remove("onRemove");
+          events.Change("onChange");
+          events.ColumnMenuInit("onColumnMenuInit");
+          events.ColumnShow("onColumnShow");
+          events.DataBound("onDataBound");
+          events.DetailInit("onDetailInit");
+          events.Save("onSave");
+          events.FilterMenuInit("onFilterMenuInit");
+          events.ColumnHide("onColumnHide");
+          events.ColumnReorder("onColumnReorder");
+          events.ColumnUnlock("onColumnUnlock");
+          events.DetailCollapse("onDetailCollapse");
+          events.Edit("onEdit");
+          events.PdfExport("onPdfExport");
+          events.SaveChanges("onSaveChanges");
+      })
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.programID))
+          .Read(read => read.Action("Programs_Read", "SandBox"))
+          .Create(create => create.Action("Programs_Create", "SandBox"))
+          .Update(update => update.Action("Programs_Update", "SandBox"))
+          .Destroy(destroy => destroy.Action("Programs_Destroy", "SandBox"))
+      )
+      .Resizable(resize => resize.Columns(true))
+//.Groupable()
+)
+
+<script>
+
+    function onCancel(e) {
+        //Implement the event handler for Cancel
+    }
+
+    function onColumnLock(e) {
+        //Implement the event handler for ColumnLock
+    }
+
+    function onColumnResize(e) {
+        //Implement the event handler for ColumnResize
+    }
+
+    function onDataBinding(e) {
+        //Implement the event handler for DataBinding
+    }
+
+    function onDetailExpand(e) {
+        //Implement the event handler for DetailExpand
+    }
+
+    function onExcelExport(e) {
+        //Implement the event handler for ExcelExport
+    }
+
+    function onRemove(e) {
+        //Implement the event handler for Remove
+    }
+
+    function onChange(e) {
+        //Implement the event handler for Change
+    }
+
+    function onColumnMenuInit(e) {
+        //Implement the event handler for ColumnMenuInit
+    }
+
+    function onColumnShow(e) {
+        //Implement the event handler for ColumnShow
+    }
+
+    function onDataBound(e) {
+        //Implement the event handler for DataBound
+    }
+
+    function onDetailInit(e) {
+        //Implement the event handler for DetailInit
+    }
+
+    function onSave(e) {
+        //Implement the event handler for Save
+    }
+
+    function onFilterMenuInit(e) {
+        //Implement the event handler for FilterMenuInit
+    }
+
+    function onColumnHide(e) {
+        //Implement the event handler for ColumnHide
+    }
+
+    function onColumnReorder(e) {
+        //Implement the event handler for ColumnReorder
+    }
+
+    function onColumnUnlock(e) {
+        //Implement the event handler for ColumnUnlock
+    }
+
+    function onDetailCollapse(e) {
+        //Implement the event handler for DetailCollapse
+    }
+
+    function onEdit(e) {
+        //Implement the event handler for Edit
+    }
+
+    function onPdfExport(e) {
+        //Implement the event handler for PdfExport
+    }
+
+    function onSaveChanges(e) {
+        //Implement the event handler for SaveChanges
+    }
+
+</script>

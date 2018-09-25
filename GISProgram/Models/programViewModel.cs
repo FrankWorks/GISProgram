@@ -17,14 +17,14 @@ namespace GISProgram.Models
         public long locationID { get; set; }
         [Key]
         public Nullable<int> programID { get; set; }
-        [Required]
-        public string programName { get; set; }
+        //[Required]
+        //public string programName { get; set; }
         public string type { get; set; }
         [Required]
         public string description { get; set; }
-        [Required]
+        
         public string displayAge { get; set; }
-        [Required]
+        
         public string feeStructure { get; set; }
         [Required]
         public Nullable<bool> registrationRequired { get; set; }
