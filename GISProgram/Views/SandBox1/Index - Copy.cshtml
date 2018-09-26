@@ -1,0 +1,34 @@
+﻿
+@(Html.Kendo().Grid<GISProgram.Models.Program>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.name);
+        columns.Bound(c => c.type);
+        columns.Bound(c => c.description);
+        columns.Bound(c => c.minAge);
+        columns.Bound(c => c.maxAge);
+        columns.Bound(c => c.displayAge);
+        columns.Bound(c => c.feeStructure);
+        columns.Bound(c => c.registrationRequired);
+        columns.Bound(c => c.registrationFee);
+        columns.Bound(c => c.frequencyType);
+        columns.Bound(c => c.frequency);
+        columns.Bound(c => c.specialCriteria);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.programID))
+          .Read(read => read.Action("Programs_Read", "SandBox1"))
+          .Create(create => create.Action("Programs_Create", "SandBox1"))
+          .Update(update => update.Action("Programs_Update", "SandBox1"))
+          .Destroy(destroy => destroy.Action("Programs_Destroy", "SandBox1"))
+      )
+)

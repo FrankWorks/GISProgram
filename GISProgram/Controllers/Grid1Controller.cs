@@ -19,7 +19,7 @@ namespace GISProgram.Controllers
     {
         private ISDGIS db = new ISDGIS();
         //EmployeeVO employee = new EmployeeVO();
-        StaticProcessVO processVO = new StaticProcessVO();
+        //StaticProcessVO processVO = new StaticProcessVO();
 
         public ActionResult Index()
         {
@@ -29,7 +29,8 @@ namespace GISProgram.Controllers
         public ActionResult Programs_Read([DataSourceRequest]DataSourceRequest request)
         {
             IQueryable<Program> programs = db.Programs;
-            DataSourceResult result = programs.ToDataSourceResult(request, program => new programViewModel{
+            DataSourceResult result = programs.ToDataSourceResult(request, program => new programViewModel
+            {
                 programID = program.programID,
                 locationID = program.locationID,
                 parkName = db.Locations.Where(s => s.locationID == program.locationID).Select(s => s.name).First(),
@@ -48,7 +49,7 @@ namespace GISProgram.Controllers
                 programCategoryName = program.programCategoryID.ToString(),
             });
 
-            return Json(result,JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -98,8 +99,9 @@ namespace GISProgram.Controllers
                 }
 
                 program.programID = entity.programID;
-                StaticProcessVO procesVO = new StaticProcessVO(entity.programID.ToString() + "added");
-                
+                var parkName = db.Locations.Where(s => s.locationID == entity.locationID).Select(s => s.name).First();
+                StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Added");
+
             }
 
             return Json(new[] { program }.ToDataSourceResult(request, ModelState));
@@ -112,7 +114,7 @@ namespace GISProgram.Controllers
             {
                 var entity = new Program
                 {
-                    programID =(int)program.programID,
+                    programID = (int)program.programID,
                     locationID = program.locationID,
                     name = program.name,
                     type = program.type,
@@ -130,7 +132,31 @@ namespace GISProgram.Controllers
 
                 db.Programs.Attach(entity);
                 db.Entry(entity).State = EntityState.Modified;
-                db.SaveChanges();
+                    try
+                    {
+                        db.SaveChanges();
+
+                    }
+                    catch (Exception ee)
+                    {
+
+                        string mes = ee.InnerException.Message;
+                        Exception d = new Exception();
+                        object f = ee.InnerException.Data;
+                        f = ee.InnerException.HelpLink;
+                        f = ee.InnerException.HResult;
+                        f = ee.InnerException.Source;
+                        f = ee.HelpLink;
+                        f = ee.HResult;
+                        f = ee.Source;
+                        f = ee.Data;
+                        string tem = ee.StackTrace;
+                        StaticProcessVO processVO = new StaticProcessVO(tem.ToString());
+                    }
+
+
+                    var parkName = db.Locations.Where(s => s.locationID == entity.locationID).Select(s => s.name).First();
+                    StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Updated");
             }
 
             return Json(new[] { program }.ToDataSourceResult(request, ModelState));
@@ -156,11 +182,38 @@ namespace GISProgram.Controllers
                     frequencyType = program.frequencyType,
                     frequency = program.frequency,
                     specialCriteria = program.specialCriteria,
+                    locationID = program.locationID
                 };
 
                 db.Programs.Attach(entity);
                 db.Programs.Remove(entity);
-                db.SaveChanges();
+
+                    try
+                    {
+                        db.SaveChanges();
+
+                    }
+                    catch (Exception ee)
+                    {
+
+                        string mes = ee.InnerException.Message;
+                        Exception d = new Exception();
+                        object f = ee.InnerException.Data;
+                        f = ee.InnerException.HelpLink;
+                        f = ee.InnerException.HResult;
+                        f = ee.InnerException.Source;
+                        f = ee.HelpLink;
+                        f = ee.HResult;
+                        f = ee.Source;
+                        f = ee.Data;
+                        string tem = ee.StackTrace;
+                        StaticProcessVO processVO = new StaticProcessVO(tem.ToString());
+                    }
+
+
+                    var parkName = db.Locations.Where(s => s.locationID == entity.locationID).Select(s => s.name).First();
+                    StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Deleted");
+
             }
 
             return Json(new[] { program }.ToDataSourceResult(request, ModelState));
@@ -173,7 +226,7 @@ namespace GISProgram.Controllers
 
             return File(fileContents, contentType, fileName);
         }
-    
+
         [HttpPost]
         public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
         {

@@ -51,7 +51,7 @@ namespace GISProgram
             bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
             //"~/Content/kendo/kendo.common-bootstrap.min.css",
             //"~/Content/kendo/kendo.bootstrap.min.css"
-            
+            "~/Content/kendo/kendo.common.min.css",
             "~/Content/kendo/kendo.common-bootstrap.min.css",
             "~/Content/kendo/kendo.metroblack.min.css"              // Metro Black Style
 

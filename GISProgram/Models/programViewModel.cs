@@ -22,11 +22,11 @@ namespace GISProgram.Models
         public string type { get; set; }
         [Required]
         public string description { get; set; }
-        
+        [Required]
         public string displayAge { get; set; }
         
         public string feeStructure { get; set; }
-        [Required]
+        
         public Nullable<bool> registrationRequired { get; set; }
         [Required]
         public string registrationFee { get; set; }

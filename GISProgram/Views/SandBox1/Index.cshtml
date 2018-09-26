@@ -1,0 +1,39 @@
+﻿
+@(Html.Kendo().Grid<GISProgram.Models.programViewModel>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.programID).Hidden();
+          columns.Bound(c => c.locationID).Title("ParkID");
+          columns.Bound(c => c.parkName).Title("Park").Width(150);
+          columns.Bound(c => c.name).Title("Program").Width(150);
+          // columns.Bound(c => c.type);
+          columns.Bound(c => c.description).Title("Descrption").Width(200);
+          //columns.Bound(c => c.minAge);
+          //columns.Bound(c => c.maxAge);
+          columns.Bound(c => c.displayAge).Title("Age").Width(75);
+          columns.Bound(c => c.feeStructure).Title("Fee Structure").Width(200);
+          columns.Bound(c => c.registrationRequired).Title("Reg. Required").Width(75).Hidden();
+          columns.Bound(c => c.registrationFee).Title("Fee").Width(75);
+          columns.Bound(c => c.frequencyType).Hidden();
+          columns.Bound(c => c.frequency).Hidden();
+          columns.Bound(c => c.specialCriteria).Hidden();
+          columns.Bound(c => c.programCategoryName).Hidden();
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar =>
+      {
+          toolbar.Create();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Scrollable(s => s.Height("auto"))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.programID))
+          .Read(read => read.Action("Programs_Read", "SandBox1"))
+          .Create(create => create.Action("Programs_Create", "SandBox1"))
+          .Update(update => update.Action("Programs_Update", "SandBox1"))
+          .Destroy(destroy => destroy.Action("Programs_Destroy", "SandBox1"))
+      )
+)

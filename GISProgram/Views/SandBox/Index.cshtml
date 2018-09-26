@@ -1,30 +1,83 @@
 ﻿
-@(Html.Kendo().Grid<GISProgram.Models.Program>()
+@(Html.Kendo().Grid<GISProgram.Models.programViewModel>()
       .Name("grid")
       .Columns(columns =>
       {
-          columns.Bound(c => c.name);
-          columns.Bound(c => c.type);
-          columns.Bound(c => c.description);
-          columns.Bound(c => c.minAge);
-          columns.Bound(c => c.maxAge);
-          columns.Bound(c => c.displayAge);
-          columns.Bound(c => c.feeStructure);
-          columns.Bound(c => c.registrationRequired);
-          columns.Bound(c => c.registrationFee);
-          columns.Bound(c => c.frequencyType);
-          columns.Bound(c => c.frequency);
-          columns.Bound(c => c.specialCriteria);
+          columns.Bound(c => c.programID).Hidden();
+          columns.Bound(c => c.locationID).Title("ParkID");
+          columns.Bound(c => c.parkName).Title("Park").Width(150);
+          columns.Bound(c => c.name).Title("Program").Width(150);
+          // columns.Bound(c => c.type);
+          columns.Bound(c => c.description).Title("Descrption").Width(200);
+          //columns.Bound(c => c.minAge);
+          //columns.Bound(c => c.maxAge);
+          columns.Bound(c => c.displayAge).Title("Age").Width(75);
+          columns.Bound(c => c.feeStructure).Title("Fee Structure").Width(200);
+          columns.Bound(c => c.registrationRequired).Title("Reg. Required").Width(75).Hidden();
+          columns.Bound(c => c.registrationFee).Title("Fee").Width(75);
+          columns.Bound(c => c.frequencyType).Hidden();
+          columns.Bound(c => c.frequency).Hidden();
+          columns.Bound(c => c.specialCriteria).Hidden();
+          columns.Bound(c => c.programCategoryName).Hidden();
           columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
       })
+      //.ToolBar(toolbar =>
+      //{
+      //    toolbar.Create();
+      //    //toolbar.Excel();
+      //    //toolbar.Pdf();
+      //})
       .ToolBar(toolbar =>
       {
-          toolbar.Create();
+          //toolbar.Create();
           //toolbar.Excel();
           //toolbar.Pdf();
+          toolbar.Template(@<text>
+        @item.CreateButton("Add")
+
+        @*<div class="refreshBtnContainer">
+                <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh"><span class="k-icon k-i-reload"></span></a>
+            </div>*@
+        <div class="toolbar">
+            <label class="category-label" for="category">Show programs by park:</label>
+            @(Html.Kendo().DropDownList()
+          .Name("locationID")
+          .DataTextField("name")
+          .DataValueField("locationID")
+          .Filter("contains")
+          .OptionLabel("All")
+          .ValuePrimitive(true)
+          .AutoBind(false)
+          .Events(e =>
+          {
+              e.Change("onParkChange");
+              //.Select("onSave").Open("onOpen").Close("onClose").DataBound("onDataBound").Filtering("onFiltering");
+          })
+          .DataSource(source =>
+          {
+              source.Custom()
+              .ServerFiltering(true)
+              .ServerPaging(true)
+              .PageSize(80)
+              .Type("aspnetmvc-ajax")
+              .Transport(transport =>
+              {
+                  transport.Read("locationPrograms_Read", "programLocations");
+              })
+              .Schema(schema =>
+              {
+                  schema.Data("Data");
+              });
+
+          })
+    .HtmlAttributes(new { style = "width: 100%" })
+            )
+        </div>
+        </text>);
       })
       .ColumnMenu()
-      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("program"))
+      //.Editable(editable => editable.Mode(GridEditMode.PopUp))
       .Pageable()
       .Navigatable()
       .Selectable(selectable =>
@@ -40,27 +93,27 @@
       .Scrollable(s => s.Height("auto"))
       .Events(events =>
       {
-          events.Cancel("onCancel");
-          events.ColumnLock("onColumnLock");
-          events.ColumnResize("onColumnResize");
-          events.DataBinding("onDataBinding");
-          events.DetailExpand("onDetailExpand");
-          events.ExcelExport("onExcelExport");
-          events.Remove("onRemove");
-          events.Change("onChange");
-          events.ColumnMenuInit("onColumnMenuInit");
-          events.ColumnShow("onColumnShow");
-          events.DataBound("onDataBound");
-          events.DetailInit("onDetailInit");
-          events.Save("onSave");
-          events.FilterMenuInit("onFilterMenuInit");
-          events.ColumnHide("onColumnHide");
-          events.ColumnReorder("onColumnReorder");
-          events.ColumnUnlock("onColumnUnlock");
-          events.DetailCollapse("onDetailCollapse");
-          events.Edit("onEdit");
-          events.PdfExport("onPdfExport");
-          events.SaveChanges("onSaveChanges");
+          //events.Cancel("onCancel");
+          //events.ColumnLock("onColumnLock");
+          //events.ColumnResize("onColumnResize");
+          //events.DataBinding("onDataBinding");
+          //events.DetailExpand("onDetailExpand");
+          //events.ExcelExport("onExcelExport");
+          //events.Remove("onRemove");
+          //events.Change("onChange");
+          //events.ColumnMenuInit("onColumnMenuInit");
+          //events.ColumnShow("onColumnShow");
+          //events.DataBound("onDataBound");
+          //events.DetailInit("onDetailInit");
+          //events.Save("onSave");
+          //events.FilterMenuInit("onFilterMenuInit");
+          //events.ColumnHide("onColumnHide");
+          //events.ColumnReorder("onColumnReorder");
+          //events.ColumnUnlock("onColumnUnlock");
+          //events.DetailCollapse("onDetailCollapse");
+          //events.Edit("onEdit");
+          //events.PdfExport("onPdfExport");
+          //events.SaveChanges("onSaveChanges");
       })
       .DataSource(dataSource => dataSource
           .Ajax()
@@ -76,88 +129,156 @@
 
 <script>
 
-    function onCancel(e) {
-        //Implement the event handler for Cancel
-    }
+    //function onCancel(e) {
+    //    //Implement the event handler for Cancel
+    //}
 
-    function onColumnLock(e) {
-        //Implement the event handler for ColumnLock
-    }
+    //function onColumnLock(e) {
+    //    //Implement the event handler for ColumnLock
+    //}
 
-    function onColumnResize(e) {
-        //Implement the event handler for ColumnResize
-    }
+    //function onColumnResize(e) {
+    //    //Implement the event handler for ColumnResize
+    //}
 
-    function onDataBinding(e) {
-        //Implement the event handler for DataBinding
-    }
+    //function onDataBinding(e) {
+    //    //Implement the event handler for DataBinding
+    //}
 
-    function onDetailExpand(e) {
-        //Implement the event handler for DetailExpand
-    }
+    //function onDetailExpand(e) {
+    //    //Implement the event handler for DetailExpand
+    //}
 
-    function onExcelExport(e) {
-        //Implement the event handler for ExcelExport
-    }
+    //function onExcelExport(e) {
+    //    //Implement the event handler for ExcelExport
+    //}
 
-    function onRemove(e) {
-        //Implement the event handler for Remove
-    }
+    //function onRemove(e) {
+    //    //Implement the event handler for Remove
+    //}
 
     function onChange(e) {
         //Implement the event handler for Change
+        //alert("onChange");
     }
 
-    function onColumnMenuInit(e) {
-        //Implement the event handler for ColumnMenuInit
-    }
+    //function onColumnMenuInit(e) {
+    //    //Implement the event handler for ColumnMenuInit
+    //}
 
-    function onColumnShow(e) {
-        //Implement the event handler for ColumnShow
-    }
+    //function onColumnShow(e) {
+    //    //Implement the event handler for ColumnShow
+    //}
 
-    function onDataBound(e) {
-        //Implement the event handler for DataBound
-    }
+    //function onDataBound(e) {
+    //    //Implement the event handler for DataBound
+    //}
 
-    function onDetailInit(e) {
-        //Implement the event handler for DetailInit
-    }
+    //function onDetailInit(e) {
+    //    //Implement the event handler for DetailInit
+    //}
 
-    function onSave(e) {
-        //Implement the event handler for Save
-    }
+    //function onSave(e) {
+    //    //Implement the event handler for Save
+    //}
 
-    function onFilterMenuInit(e) {
-        //Implement the event handler for FilterMenuInit
-    }
+    //function onFilterMenuInit(e) {
+    //    //Implement the event handler for FilterMenuInit
+    //}
 
-    function onColumnHide(e) {
-        //Implement the event handler for ColumnHide
-    }
+    //function onColumnHide(e) {
+    //    //Implement the event handler for ColumnHide
+    //}
 
-    function onColumnReorder(e) {
-        //Implement the event handler for ColumnReorder
-    }
+    //function onColumnReorder(e) {
+    //    //Implement the event handler for ColumnReorder
+    //}
 
-    function onColumnUnlock(e) {
-        //Implement the event handler for ColumnUnlock
-    }
+    //function onColumnUnlock(e) {
+    //    //Implement the event handler for ColumnUnlock
+    //}
 
-    function onDetailCollapse(e) {
-        //Implement the event handler for DetailCollapse
-    }
+    //function onDetailCollapse(e) {
+    //    //Implement the event handler for DetailCollapse
+    //}
 
-    function onEdit(e) {
-        //Implement the event handler for Edit
-    }
+    //function onEdit(e) {
+    //    //Implement the event handler for Edit
+    //}
 
-    function onPdfExport(e) {
+    //function onPdfExport(e) {
+    //    //Implement the event handler for PdfExport
+    //}
+    function onSelect(e) {
         //Implement the event handler for PdfExport
-    }
 
+    }
     function onSaveChanges(e) {
         //Implement the event handler for SaveChanges
+        alert("OnSaveChanges");
+    }
+    function onParkChange(e) {
+        //Implement the event handler for PdfExport
+        //alert("Hello");
+        var dataItem = this.dataItem(e.item);
+        var value = this.value();
+        console.log("event :: select (" + dataItem.name + " : " + dataItem.name + ")");
+        var locationID = dataItem.locationID;
+        console.log("event :: select (" + locationID + " : " + locationID + ")");
+
+        var value = this.value(),
+        grid = $("#grid").data("kendoGrid");
+
+        if (value) {
+            grid.dataSource.filter({ field: "locationID", operator: "eq", value: parseInt(value) });
+        } else {
+            grid.dataSource.filter({});
+        }
+    }
+    function onOpen(e) {
+        //Implement the event handler for PdfExport
+        alert("onOpen");
+    }
+    function onClose(e) {
+        //Implement the event handler for PdfExport
+        alert("onClose");
+    }
+    function onFiltering(e) {
+        //Implement the event handler for PdfExport
+        alert("onFilterChange");
+    }
+    function onCateogrySelect(e) {
+        //Implement the event handler for PdfExport
+        alert("onCategorySelect");
+    }
+    //$(function () {
+    //    var grid = $("#grid");
+    //    grid.find(".k-grid-toolbar").on("click", ".k-pager-refresh", function (e) {
+    //        e.preventDefault();
+    //        grid.data("kendoGrid").dataSource.read();
+    //    });
+
+    //});
+</script>
+<style>
+    #grid .k-grid-toolbar {
+        padding: .6em 1.3em .6em .4em;
     }
 
-</script>
+    .category-label {
+        vertical-align: middle;
+        padding-right: .5em;
+    }
+
+    #category {
+        vertical-align: middle;
+    }
+
+    .refreshBtnContainer {
+        display: inline-block;
+    }
+
+    .toolbar {
+        float: right;
+    }
+</style>

@@ -239,13 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Grid1Controller.cs" />
-    <Compile Include="Controllers\GridController.cs" />
-    <Compile Include="Controllers\LocationController.cs" />
-    <Compile Include="Controllers\ProgramHelperController.cs" />
     <Compile Include="Controllers\programLocationsController.cs" />
-    <Compile Include="Controllers\ProgramsR1Controller.cs" />
-    <Compile Include="Controllers\SandBoxController.cs" />
-    <Compile Include="Controllers\tblParksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -334,26 +328,8 @@
     <Compile Include="Models\LocationCategory1.cs">
       <DependentUpon>ISDGISProgram.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LocationViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
-    <Compile Include="Models\ModelCode.cs" />
-    <Compile Include="Models\ModelTest.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTest.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelTest.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTest.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelTest.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTest.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ParkProgram.cs" />
     <Compile Include="Models\parkViewModel.cs" />
     <Compile Include="Models\Program.cs">
       <DependentUpon>ISDGISProgram.tt</DependentUpon>
@@ -363,16 +339,12 @@
     </Compile>
     <Compile Include="Models\programLocationViewModel.cs" />
     <Compile Include="Models\programViewModel.cs" />
-    <Compile Include="Models\tblPark.cs">
-      <DependentUpon>ModelTest.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Trip.cs">
       <DependentUpon>Fleet.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vehicle.cs">
       <DependentUpon>Fleet.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\vwProgramHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -747,16 +719,6 @@
       <DependentUpon>ISDGISProgram.edmx</DependentUpon>
       <LastGenOutput>ISDGISProgram.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelTest.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelTest.edmx</DependentUpon>
-      <LastGenOutput>ModelTest.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ModelTest.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelTest.edmx</DependentUpon>
-      <LastGenOutput>ModelTest.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -784,13 +746,6 @@
     </EntityDeploy>
     <Content Include="Models\Fleet.edmx.diagram">
       <DependentUpon>Fleet.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\ModelTest.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelTest.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelTest.edmx.diagram">
-      <DependentUpon>ModelTest.edmx</DependentUpon>
     </Content>
     <EntityDeploy Include="Models\ISDGISProgram.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -1563,21 +1518,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\tblParks\Create.cshtml" />
-    <Content Include="Views\tblParks\Delete.cshtml" />
-    <Content Include="Views\tblParks\Details.cshtml" />
-    <Content Include="Views\tblParks\Edit.cshtml" />
-    <Content Include="Views\tblParks\Index.cshtml" />
-    <Content Include="Views\ProgramHelper\Create.cshtml" />
-    <Content Include="Views\ProgramHelper\Delete.cshtml" />
-    <Content Include="Views\ProgramHelper\Details.cshtml" />
-    <Content Include="Views\ProgramHelper\Edit.cshtml" />
-    <Content Include="Views\ProgramHelper\Index.cshtml" />
-    <Content Include="Views\ISDProgram\Create.cshtml" />
-    <Content Include="Views\ISDProgram\Delete.cshtml" />
-    <Content Include="Views\ISDProgram\Details.cshtml" />
-    <Content Include="Views\ISDProgram\Edit.cshtml" />
-    <Content Include="Views\ISDProgram\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -1590,21 +1530,9 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
-    <Content Include="Views\Grid\Index.cshtml" />
-    <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Grid1\Index.cshtml" />
     <Content Include="Views\Grid1\EditorTemplates\program.cshtml" />
-    <Content Include="Views\programLocations\Create.cshtml" />
-    <Content Include="Views\programLocations\Delete.cshtml" />
-    <Content Include="Views\programLocations\Details.cshtml" />
-    <Content Include="Views\programLocations\Edit.cshtml" />
-    <Content Include="Views\programLocations\Index.cshtml" />
     <Content Include="Views\Grid1\EditorTemplates\testpopup.cshtml" />
-    <Content Include="Views\ProgramsR1\Create.cshtml" />
-    <Content Include="Views\ProgramsR1\Delete.cshtml" />
-    <Content Include="Views\ProgramsR1\Details.cshtml" />
-    <Content Include="Views\ProgramsR1\Edit.cshtml" />
-    <Content Include="Views\ProgramsR1\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Scripts\kendo\cultures\kendo.culture.af-ZA.min.js.map" />
     <Content Include="Scripts\kendo\cultures\kendo.culture.af.min.js.map" />
@@ -2210,7 +2138,6 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-CN.min.js.map" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-HK.min.js.map" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js.map" />
-    <Content Include="Views\SandBox\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

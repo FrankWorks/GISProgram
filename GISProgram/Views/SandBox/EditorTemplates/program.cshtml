@@ -1,0 +1,259 @@
+﻿
+@model GISProgram.Models.programViewModel
+
+<h3>Add or Edit Program</h3>
+<br />
+@Html.HiddenFor(model => model.programID)
+@Html.Hidden("tempParkID", 0)
+@Html.Hidden("tempProgramID", 0)
+
+
+<div>
+    @*@Html.LabelFor(model => model.parkName).ToString().ToUpper()*@
+    Park Name:
+</div>
+
+<div>
+    @(Html.Kendo().DropDownListFor(model => model.parkName)
+          .DataTextField("name")
+          .DataValueField("locationID")
+          .Filter("contains")
+          .ValuePrimitive(true)
+          .Events(e =>
+          {
+             // e.Change("onChange").Select("onSelect").Open("onOpen").Close("onClose").DataBound("onDataBound").Filtering("onFiltering");
+          })
+          .DataSource(source =>
+          {
+              source.Custom()
+              .ServerFiltering(true)
+              .ServerPaging(true)
+              .PageSize(80)
+              .Type("aspnetmvc-ajax")
+              .Transport(transport =>
+              {
+                  transport.Read("locationPrograms_Read", "programLocations");
+              })
+              .Schema(schema =>
+              {
+                  schema.Data("Data");
+              });
+
+          })
+    .HtmlAttributes(new { style = "width: 100%" })
+    )
+    @Html.ValidationMessageFor(model => model.parkName)
+</div>
+
+<div>
+    @*@Html.LabelFor(model => model.programCategoryName)*@
+    Program Category:
+</div>
+
+<div>
+    @(Html.Kendo().DropDownListFor(model => model.programCategoryName)
+          //.Name("programCategoryList")
+          .DataTextField("name")
+          .DataValueField("locationID")
+          //.Filter("contains")
+          .ValuePrimitive(true)
+          .Events(e =>
+          {
+              //e.Change("onChange").Select("onCateogrySelect").Open("onOpen").Close("onClose").DataBound("onDataBound").Filtering("onFiltering");
+              //e.Select("onCateogrySelect");
+          })
+          .DataSource(source =>
+          {
+              source.Custom()
+              .ServerFiltering(true)
+              .ServerPaging(true)
+              .PageSize(80)
+              .Type("aspnetmvc-ajax")
+              .Transport(transport =>
+              {
+                  transport.Read("locationProgramCategory_Read", "programLocations");
+              })
+              .Schema(schema =>
+              {
+                  schema.Data("Data");
+              });
+
+
+          })
+    .HtmlAttributes(new { style = "width: 100%" })
+    )
+    @Html.ValidationMessageFor(model => model.programCategoryName)
+</div>
+
+<div>
+    @*Html.LabelFor(model => model.name)*@
+    Program Name:
+</div>
+
+<div>
+    @Html.TextBoxFor(model => model.name, new { maxlength = 200, size = 200 })
+    @Html.ValidationMessageFor(model => model.name)
+</div>
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Program Description:
+</div>
+
+<div>
+    @Html.TextAreaFor(model => model.description, new { style = "width: 500px;" })
+    @Html.ValidationMessageFor(model => model.description)
+</div>
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Display Age:
+</div>
+
+<div>
+    @Html.TextAreaFor(model => model.displayAge, new { style = "width: 500px;" })
+    @Html.ValidationMessageFor(model => model.displayAge)
+</div>
+
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Fee Structure(e.g. Monthly):
+</div>
+
+<div>
+    @Html.TextAreaFor(model => model.feeStructure, new { style = "width: 500px;" })
+    @Html.ValidationMessageFor(model => model.feeStructure)
+</div>
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Register Online(Y/N):
+</div>
+
+<div>
+@*    @{
+        bool bValue = (Model.registrationRequired.Value ? true : false);
+    }*@
+    @Html.EditorFor(model => model.registrationRequired)
+    @Html.ValidationMessageFor(model => model.registrationRequired)
+</div>
+
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Fee:
+</div>
+
+<div>
+    @Html.TextBoxFor(model => model.registrationFee, new { style = "width: 500px;" })
+    @Html.ValidationMessageFor(model => model.registrationFee)
+</div>
+
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Monthly / Weekly / Daily :
+</div>
+
+<div>
+    @Html.TextAreaFor(model => model.frequencyType, new { style = "width: 500px;" })
+    @Html.ValidationMessageFor(model => model.frequencyType)
+</div>
+
+
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Session Day( e.g. Mon. Tue. Wed. etc.):
+</div>
+
+<div>
+    @Html.TextAreaFor(model => model.frequency, new { style = "width: 500px;" })
+    @Html.ValidationMessageFor(model => model.frequency)
+</div>
+
+
+<div>
+    @*@Html.LabelFor(model => model.description)*@
+    Special Need (Y/N):
+</div>
+
+<div>
+    @*@{
+        bool sValue = (Model.registrationRequired.Value ? true : false);
+    }
+    @Html.EditorFor(model =>model.specialCriteria)*@
+
+    @(Html.Kendo().DropDownListFor(model => model.specialCriteria)
+          .Name("specialCriteria")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          //.Events(e => e.Change("onChange"))
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {
+                  Text = "Select",
+                  Value = ""
+              },
+              new SelectListItem() {
+                  Text = "Yes",
+                  Value = "Yes"
+              },
+              new SelectListItem() {
+                  Text = "No",
+                  Value = "No"
+              }
+          })
+          .Value("")
+          .HtmlAttributes(new { style = "width: 100%" })
+    )
+
+    @Html.ValidationMessageFor(model => model.specialCriteria)
+</div>
+
+
+<script type="text/javascript">
+    function onSelect(e) {
+        var dataItem = this.dataItem(e.item);
+        var value = this.value();
+        console.log("event :: select (" + dataItem.name + " : " + dataItem.name + ")");
+        var locationID = dataItem.locationID;
+        console.log("event :: select (" + locationID + " : " + locationID + ")");
+        $('tempParkID').val(dataItem.locationID);
+    }
+
+    function onCateogrySelect(e) {
+        var dataItem = this.dataItem(e.item);
+        var value = this.value();
+        console.log("event :: select (" + dataItem.name + " : " + dataItem.name + ")");
+        var locationID = dataItem.locationID;
+        console.log("event :: select (" + locationID + " : " + locationID + ")");
+        $('tempProgramID').val(dataItem.locationID);
+    }
+    function onChange() {
+        var value = $("#specialCriteria").val();
+        $("#cap")
+                .toggleClass("black-cap", value == 1)
+                .toggleClass("orange-cap", value == 2)
+                .toggleClass("grey-cap", value == 3);
+    };
+</script>
+<style>
+    #cap {
+        width: 242px;
+        height: 225px;
+        margin: 20px auto;
+        background-image: url('@Url.Content("~/Content/web/dropdownlist/cap.png")');
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+    .black-cap {
+        background-position: 0 0;
+    }
+    .grey-cap {
+        background-position: 0 -225px;
+    }
+    .orange-cap {
+        background-position: 0 -450px;
+    }
+</style>
