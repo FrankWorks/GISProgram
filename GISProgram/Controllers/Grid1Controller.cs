@@ -11,6 +11,8 @@ using Kendo.Mvc.UI;
 using GISProgram.Models;
 using Infrastucture.VO;
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNet.Identity;
+
 
 namespace GISProgram.Controllers
 {
@@ -20,9 +22,10 @@ namespace GISProgram.Controllers
         private ISDGIS db = new ISDGIS();
         //EmployeeVO employee = new EmployeeVO();
         //StaticProcessVO processVO = new StaticProcessVO();
-
+        
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -55,6 +58,7 @@ namespace GISProgram.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Programs_Create([DataSourceRequest]DataSourceRequest request, programViewModel program)
         {
+            string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 var entity = new Program
@@ -100,7 +104,7 @@ namespace GISProgram.Controllers
 
                 program.programID = entity.programID;
                 var parkName = db.Locations.Where(s => s.locationID == entity.locationID).Select(s => s.name).First();
-                StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Added");
+                StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Added by " +userId );
 
             }
 
@@ -110,6 +114,7 @@ namespace GISProgram.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Programs_Update([DataSourceRequest]DataSourceRequest request, programViewModel program)
         {
+            string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 var entity = new Program
@@ -156,7 +161,7 @@ namespace GISProgram.Controllers
 
 
                     var parkName = db.Locations.Where(s => s.locationID == entity.locationID).Select(s => s.name).First();
-                    StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Updated");
+                    StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Updated by " + userId);
             }
 
             return Json(new[] { program }.ToDataSourceResult(request, ModelState));
@@ -165,6 +170,7 @@ namespace GISProgram.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Programs_Destroy([DataSourceRequest]DataSourceRequest request, Program program)
         {
+            string userId = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 var entity = new Program
@@ -212,7 +218,7 @@ namespace GISProgram.Controllers
 
 
                     var parkName = db.Locations.Where(s => s.locationID == entity.locationID).Select(s => s.name).First();
-                    StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Deleted");
+                    StaticProcessVO procesVO = new StaticProcessVO("Program ID: " + entity.programID.ToString() + " : Program Name: " + entity.name.ToString() + " for " + parkName.ToString() + " Deleted by " + userId);
 
             }
 
